@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class 8 (DOLON) Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orbs" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+
+    <main id="app" class="app-shell"></main>
+
+    <template id="login-template">
+      <section class="auth-screen card pop-in">
+        <header>
+          <p class="eyebrow">Futuristic Learning Hub</p>
+          <h1>Class 8 (DOLON)</h1>
+          <p class="subtitle">Choose your access role to enter the live smart campus.</p>
+        </header>
+        <div class="role-grid">
+          <button class="role-btn" data-role="admin">
+            <span class="role-title">Admin</span>
+            <span class="role-desc">God mode control panel access</span>
+          </button>
+          <button class="role-btn" data-role="student">
+            <span class="role-title">Student</span>
+            <span class="role-desc">Class content, routine, AI assistant</span>
+          </button>
+          <button class="role-btn" data-role="visitor">
+            <span class="role-title">Visitor</span>
+            <span class="role-desc">View-only overview with guided AI</span>
+          </button>
+        </div>
+        <form id="auth-form" class="auth-form hidden" autocomplete="off">
+          <h2 id="auth-title"></h2>
+          <label class="input-wrap">
+            <span>Password</span>
+            <input type="password" id="auth-password" required />
+          </label>
+          <button class="primary" type="submit">Login</button>
+          <button class="ghost" type="button" id="auth-cancel">Cancel</button>
+          <p id="auth-message" class="message" role="alert"></p>
+        </form>
+      </section>
+    </template>
+
+    <template id="dashboard-template">
+      <section class="dashboard fade-in-up">
+        <header class="topbar card">
+          <div>
+            <p class="eyebrow" id="role-label"></p>
+            <h1>Class 8 (DOLON) Control Dashboard</h1>
+          </div>
+          <div class="topbar-actions">
+            <button id="edit-toggle" class="ghost hidden">Edit Mode: OFF</button>
+            <button id="logout-btn" class="primary">Logout</button>
+          </div>
+        </header>
+
+        <section id="admin-control" class="card hidden"></section>
+
+        <section class="grid">
+          <article class="card panel" data-section="notices">
+            <div class="panel-head">
+              <h2>Notices</h2>
+              <button class="lock-btn" data-lock="notices" title="Toggle lock" aria-label="Toggle notices lock">🔒</button>
+            </div>
+            <ul id="notices-list" class="content-list"></ul>
+            <form class="editor hidden" data-editor="notices">
+              <input type="text" name="title" placeholder="Notice title" required />
+              <textarea name="body" rows="3" placeholder="Notice details" required></textarea>
+              <button class="primary" type="submit">Add Notice</button>
+            </form>
+          </article>
+
+          <article class="card panel" data-section="homework">
+            <div class="panel-head">
+              <h2>Homework</h2>
+              <button class="lock-btn" data-lock="homework" title="Toggle lock" aria-label="Toggle homework lock">🔒</button>
+            </div>
+            <ul id="homework-list" class="content-list"></ul>
+            <form class="editor hidden" data-editor="homework">
+              <input type="text" name="title" placeholder="Homework subject" required />
+              <textarea name="body" rows="3" placeholder="Homework details" required></textarea>
+              <button class="primary" type="submit">Add Homework</button>
+            </form>
+          </article>
+
+          <article class="card panel" data-section="routine">
+            <div class="panel-head">
+              <h2>Class Routine</h2>
+              <button class="lock-btn" data-lock="routine" title="Toggle lock" aria-label="Toggle routine lock">🔒</button>
+            </div>
+            <ul id="routine-list" class="content-list"></ul>
+            <form class="editor hidden" data-editor="routine">
+              <input type="text" name="title" placeholder="Day / Topic" required />
+              <textarea name="body" rows="3" placeholder="Routine details" required></textarea>
+              <button class="primary" type="submit">Add Routine Item</button>
+            </form>
+          </article>
+
+          <article class="card panel" data-section="classTime">
+            <div class="panel-head">
+              <h2>Class Time</h2>
+              <button class="lock-btn" data-lock="classTime" title="Toggle lock" aria-label="Toggle class time lock">🔒</button>
+            </div>
+            <ul id="classTime-list" class="content-list"></ul>
+            <form class="editor hidden" data-editor="classTime">
+              <input type="text" name="title" placeholder="Period" required />
+              <textarea name="body" rows="3" placeholder="Time and notes" required></textarea>
+              <button class="primary" type="submit">Add Class Time</button>
+            </form>
+          </article>
+        </section>
+
+        <section class="card assistant-panel">
+          <div class="panel-head">
+            <h2>AI Assistant</h2>
+            <span class="badge">Role-Aware</span>
+          </div>
+          <p class="subtitle">Ask about permissions, class updates, routine, and how to use this system.</p>
+          <div id="ai-log" class="ai-log"></div>
+          <form id="ai-form" class="ai-form">
+            <input id="ai-input" type="text" placeholder="Ask the assistant anything about the portal..." required />
+            <button class="primary" type="submit">Ask AI</button>
+          </form>
+        </section>
+      </section>
+    </template>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
